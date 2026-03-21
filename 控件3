@@ -1,0 +1,33 @@
+更强大的滚动控件——RecyclerView
+- ListView能实现的他都能实现，还优化了ListView中存在的各种不足之处。
+- 使用前要在build中dependencies中添加：implementation 'androidx.recyclerview:recyclerview:1.4.0'
+- 接着修改activity_main.xml中的代码：
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
+- 为RecyclerView准备一个适配器，新建fruitAdapter类，具体见P123
+没有fruit图片所以很难写明白
+横向滚动
+- 在fruit.xml中，android:orientation="vertical" android:layout_woidth="100dp"
+- 把图片和文本都修改为android:layout_gravity="center_horizontal"
+- android:layout_marginTop = "10dp" 设置当前控件与上一个控件的距离
+- 接下来在MainActivity的onCreate中添加一行LayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL)，表示让布局横向排列，这样就可以横向滚动了
+点击事件
+为了方便点击子项里的某个按钮并作出响应，RecyclerView舍弃了子项点击事件的监听器，所有的点击事件都由具体的View去注册。
+- 主要方式：修改适配器中的代码，主要是添加View类型的对象fruitView然后对他进行操作。
+具体见P131
+编写页面的最佳实现
+学习制作Nine_Patch图片
+卡了我半天一直找不到create 9-patch file或者是draw9patch，算了 跳
