@@ -1,0 +1,63 @@
+自定义控件
+- 所有控件都是直接或间接的继承自View的，所有的布局都是直接或间接的继承自ViewGroup的。View是Android中最基本的一种UI组件，可以在屏幕上绘制一块矩形区域，并且能够响应这块区域的各种事件。
+- 需要先创建一个新的布局文件，需要设置layout:width、layout:height和background三个属性（或者更多）以及各种控件，然后在activity_main文件中<include layout="@layout/title"/>引用布局。
+- 新建titkeLayout继承自LinearLayout，例子如下：
+public class TitlleLayout extends LinearLayout{
+    public TitleLayout(Context context,AttributeSet attrs){
+        super(context,attrs);
+        LayoutInflater.from(context).inflate(R.layout.title,this);
+    }
+}
+第4行：可以构建出一个LayoutInflater对象，然后调用inflate()方法就可以动态加载一个布局文件，此方法接收两个参数，第一个是要加载的布局文件的id，第二个是给加载好的布局再添加一个父布局。
+
+最常用和最难用的控件——ListView
+- 允许用户通过手指的上下滑动的方式将屏幕外的数据滚动到屏幕内，同时屏幕上原有的数据则会滚动出屏幕。
+ListView的简单用法
+- ListView需要数据，这些数据可以是从网上下载的，也可以是从数据库中读取的，应该视具体应用程序场景而定。
+- 数组中的数据是无法直接传递给ListView的，需要借助适配器来完成。
+- ArrayAdapter:通过泛型来指定要适配的数据类型，是一个在当前情况最好用的适配器。
+- 在ArrayAdapter中使用了android.R.layout.simple_list_item_1作为子项布局的id，这是一个android内置的布局文件，里面只有一个TextView，可用于简单的显示一项文本。
+定制ListView的界面
+由于没有图片素材所以没有进行实操。
+- ListView不止可以显示文字，也可以显示图片。
+- 需要为ListView的子项指定一个我们自定义的布局，在这个布局里面要用TextView和ImageView，分别用于显示水果的图片和文字。
+- 创建一个自定义的适配器，继承自ArrayAdapter，需要重写函数，具体看P117.
+
+提升ListView的运行效率
+每一次运行FuritAdapter的getView()方法时都重新将布局加载了一遍，影响运行效率。
+- getView()方法中还有一个convertView参数，用于将之前加载好的布局进行缓存。
+View view;
+if(convertView == null){
+    view = LayoutInflater.from(getContext()).iinfalate(resourceId,
+    parent,false);
+}else{
+    view = convertView;
+}
+每次在getView方法中还是会调用View的findViewById方法来获取依次控件的实例，可以借助一个ViewHolder来对这部分性能进行优化。
+- ViewHolder是一个内部类，作用是对控件的实例进行缓存（要自己写，具体看P120）
+ListView的点击事件
+- 与BUTTON主要区别是ListView有多个子项，需要判断点击的是哪个子项。
+public class MainActivity extends AppCompatActivity {
+
+    private String[] data = {"1","2","3","4","5","6","7777"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                MainActivity.this, android.R.layout.simple_list_item_1,data);
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(adapter);
+            listview.setOnItemClickListener(new AdapterView.onItemClickListener(){
+                @override
+                public void onItemClick(Adapter<?> parent,View view,int position,long id){
+                    Fruit fruit = fruitList.get(position);
+                    Toast.makeText(MainActivity.this, fruit.getName(),
+                    Toast.LENGTH_SHORT).show();
+                }
+            });
+    }
+}
+设计点击事件，通过position来判断用户点击的是哪一个子项。
