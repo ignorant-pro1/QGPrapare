@@ -16,6 +16,12 @@
     <string name="six">6</string>
     <string name="seven">7</string>
     <string name="eight">8</string>
+    <string name="app_name_login">Mycounter Login</string>
+    <string name="login_title">登录/注册</string>
+    <string name="username_hint">请输入用户名</string>
+    <string name="password_hint">请输入密码</string>
+    <string name="btn_login">登录</string>
+    <string name="btn_register">注册</string>
     <string name="nine">9</string>
     <string name="zero">0</string>
     <string name="sqrt">√</string>
