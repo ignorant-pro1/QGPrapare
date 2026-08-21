@@ -21,4 +21,8 @@
     <string name="sqrt">√</string>
     <string name="point">.</string>
     <string name="reciprocal">1/x</string>
+    <string name="username_hint">用户名</string>
+    <string name="password_hint">密码</string>
+    <string name="login_button_text">登录</string>
+    <string name="login_success_toast">登录成功</string>
 </resources>
