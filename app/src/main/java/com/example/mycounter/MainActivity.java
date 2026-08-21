@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         btnShowToast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Toast shown!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "你好", Toast.LENGTH_SHORT).show();
             }
         });
 
