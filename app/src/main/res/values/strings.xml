@@ -17,6 +17,14 @@
     <string name="seven">7</string>
     <string name="eight">8</string>
     <string name="nine">9</string>
+    <string name="emotion_title">情绪记录</string>
+    <string name="emotion_happy">开心</string>
+    <string name="emotion_sad">悲伤</string>
+    <string name="emotion_anxious">焦虑</string>
+    <string name="emotion_calm">平静</string>
+    <string name="emotion_description_hint">请描述您的情绪...</string>
+    <string name="emotion_save_button">保存</string>
+    <string name="emotion_save_success">情绪记录已保存！</string>
     <string name="zero">0</string>
     <string name="sqrt">√</string>
     <string name="point">.</string>
